@@ -1,4 +1,4 @@
-find_program(DTRACE_EXECUTABLE NAMES dtrace stap-dtrace)
+find_program(DTRACE_EXECUTABLE NAMES stap-dtrace dtrace)
 mark_as_advanced(DTRACE_EXECUTABLE)
 find_package(Perl)
 
