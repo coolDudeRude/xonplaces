@@ -30,8 +30,8 @@ typedef struct downloadinfo_s
     qboolean started;
     int loadtype;
     size_t bytes_received; // for buffer
-    double bytes_received_curl; // for throttling
-    double bytes_sent_curl; // for throttling
+    curl_off_t bytes_received_curl; // for throttling
+    curl_off_t bytes_sent_curl; // for throttling
     struct downloadinfo_s *next, *prev;
     qboolean forthismap;
     double maxspeed;
@@ -165,8 +165,8 @@ static void Curl_CheckCommandWhenDone(void)
 
 
 static CURLM *curlm = NULL;
-static double bytes_received = 0; // used for bandwidth throttling
-static double bytes_sent = 0; // used for bandwidth throttling
+static size_t bytes_received = 0; // used for bandwidth throttling
+static size_t bytes_sent = 0; // used for bandwidth throttling
 static double curltime = 0;
 
 /*
@@ -456,8 +456,8 @@ static void CheckPendingDownloads(void)
                 curl_easy_setopt(di->curle, CURLOPT_LOW_SPEED_TIME, (long) 45);
                 curl_easy_setopt(di->curle, CURLOPT_WRITEDATA, (void *) di);
                 curl_easy_setopt(di->curle, CURLOPT_PRIVATE, (void *) di);
-                curl_easy_setopt(di->curle, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS | CURLPROTO_FTP);
-                if(curl_easy_setopt(di->curle, CURLOPT_REDIR_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS | CURLPROTO_FTP) != CURLE_OK)
+                curl_easy_setopt(di->curle, CURLOPT_PROTOCOLS_STR, "http,https,ftp");
+                if(curl_easy_setopt(di->curle, CURLOPT_REDIR_PROTOCOLS_STR, "http,https,ftp") != CURLE_OK)
                 {
                     Con_Printf("^1WARNING:^7 for security reasons, please upgrade to libcurl 7.19.4 or above. In a later version of DarkPlaces, HTTP redirect support will be disabled for this libcurl version.\n");
                     //curl_easy_setopt(di->curle, CURLOPT_FOLLOWLOCATION, 0);
@@ -861,13 +861,13 @@ void Curl_Run(void)
 
         for(di = downloads; di; di = di->next)
         {
-            double b = 0;
+            curl_off_t b = 0;
             if(di->curle)
             {
-                curl_easy_getinfo(di->curle, CURLINFO_SIZE_UPLOAD, &b);
+                curl_easy_getinfo(di->curle, CURLINFO_SIZE_UPLOAD_T, &b);
                 bytes_sent += (b - di->bytes_sent_curl);
                 di->bytes_sent_curl = b;
-                curl_easy_getinfo(di->curle, CURLINFO_SIZE_DOWNLOAD, &b);
+                curl_easy_getinfo(di->curle, CURLINFO_SIZE_DOWNLOAD_T, &b);
                 bytes_sent += (b - di->bytes_received_curl);
                 di->bytes_received_curl = b;
             }
@@ -981,10 +981,10 @@ static double Curl_GetDownloadAmount(downloadinfo *di)
 {
     if(di->curle)
     {
-        double length;
-        curl_easy_getinfo(di->curle, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &length);
+        curl_off_t length;
+        curl_easy_getinfo(di->curle, CURLINFO_CONTENT_LENGTH_DOWNLOAD_T, &length);
         if(length > 0)
-            return (di->startpos + di->bytes_received) / (di->startpos + length);
+            return (di->startpos + di->bytes_received) / (double)(di->startpos + length);
         else
             return 0;
     }
@@ -1003,8 +1003,8 @@ static double Curl_GetDownloadSpeed(downloadinfo *di)
 {
     if(di->curle)
     {
-        double speed;
-        curl_easy_getinfo(di->curle, CURLINFO_SPEED_DOWNLOAD, &speed);
+        curl_off_t speed;
+        curl_easy_getinfo(di->curle, CURLINFO_SPEED_DOWNLOAD_T, &speed);
         return speed;
     }
     else
