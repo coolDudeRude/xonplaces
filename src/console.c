@@ -90,7 +90,7 @@ cvar_t condump_stripcolors = {CVAR_SAVE, "condump_stripcolors", "0", "strip colo
 int con_linewidth;
 int con_vislines;
 
-qboolean con_initialized;
+qbool con_initialized;
 
 // used for server replies to rcon command
 lhnetsocket_t *rcon_redirect_sock = NULL;
@@ -423,7 +423,7 @@ static void Log_DestBuffer_Flush_NoLock(void)
     lhnetaddress_t log_dest_addr;
     lhnetsocket_t *log_dest_socket;
     const char *s = log_dest_udp.string;
-    qboolean have_opened_temp_sockets = false;
+    qbool have_opened_temp_sockets = false;
     if(s) if(log_dest_buffer_pos > 5)
     {
         ++log_dest_buffer_appending;
@@ -576,7 +576,7 @@ Log_ConPrint
 */
 void Log_ConPrint (const char *msg)
 {
-    static qboolean inprogress = false;
+    static qbool inprogress = false;
 
     // don't allow feedback loops with memory error reports
     if (inprogress)
@@ -1106,7 +1106,7 @@ Con_MaskPrint
 */
 extern cvar_t timestamps;
 extern cvar_t timeformat;
-extern qboolean sys_nostdout;
+extern qbool sys_nostdout;
 void Con_MaskPrint(int additionalmask, const char *msg)
 {
     static int mask = 0;
@@ -1610,7 +1610,7 @@ static float Con_WordWidthFunc(void *passthrough, const char *w, size_t *length,
     }
 }
 
-static int Con_CountLineFunc(void *passthrough, const char *line, size_t length, float width, qboolean isContinuation)
+static int Con_CountLineFunc(void *passthrough, const char *line, size_t length, float width, qbool isContinuation)
 {
     (void) passthrough;
     (void) line;
@@ -1620,7 +1620,7 @@ static int Con_CountLineFunc(void *passthrough, const char *line, size_t length,
     return 1;
 }
 
-static int Con_DisplayLineFunc(void *passthrough, const char *line, size_t length, float width, qboolean isContinuation)
+static int Con_DisplayLineFunc(void *passthrough, const char *line, size_t length, float width, qbool isContinuation)
 {
     con_text_info_t *ti = (con_text_info_t *) passthrough;
 
@@ -2063,7 +2063,7 @@ its format (q1/q2/q3/hl) and even its message
 //LordHavoc: rewrote bsp type detection, rewrote message extraction to do proper worldspawn parsing
 //LordHavoc: added .ent file loading, and redesigned error handling to still try the .ent file even if the map format is not recognized, this also eliminated one goto
 //LordHavoc: FIXME: man this GetMapList is STILL ugly code even after my cleanups...
-qboolean GetMapList (const char *s, char *completedname, int completednamebufferlength)
+qbool GetMapList (const char *s, char *completedname, int completednamebufferlength)
 {
     fssearch_t    *t;
     char        message[1024];
@@ -2318,7 +2318,7 @@ static int Nicks_strncasecmp(char *a, char *b, unsigned int a_len)
     // if A contains a non-alphanumeric, B must contain it as well though!
     while(a_len)
     {
-        qboolean alnum_a, alnum_b;
+        qbool alnum_a, alnum_b;
 
         if(tolower(*a) == tolower(*b))
         {
@@ -2353,7 +2353,7 @@ static int Nicks_strncasecmp(char *a, char *b, unsigned int a_len)
 
    Count the number of possible nicks to complete
  */
-static int Nicks_CompleteCountPossible(char *line, int pos, char *s, qboolean isCon)
+static int Nicks_CompleteCountPossible(char *line, int pos, char *s, qbool isCon)
 {
     char name[128];
     int i, p;
@@ -2612,7 +2612,7 @@ static const char **Nicks_CompleteBuildList(int count)
 */
 static int Nicks_AddLastColor(char *buffer, int pos)
 {
-    qboolean quote_added = false;
+    qbool quote_added = false;
     int match;
     int color = STRING_COLOR_DEFAULT + '0';
     char r = 0, g = 0, b = 0;

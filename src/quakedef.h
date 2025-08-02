@@ -406,7 +406,7 @@ extern char engineversion[128];
 #endif
 #include "csprogs.h"
 
-extern qboolean noclip_anglehack;
+extern qbool noclip_anglehack;
 
 extern cvar_t developer;
 extern cvar_t developer_extra;

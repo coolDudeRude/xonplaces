@@ -15,9 +15,9 @@ char        key_line[MAX_INPUTLINE];
 int chat_mode;
 char        chat_buffer[MAX_INPUTLINE];
 unsigned int    chat_bufferlen = 0;
-qboolean    key_insert = true;    // insert key toggle (for editing)
+qbool    key_insert = true;    // insert key toggle (for editing)
 
-void Key_Event (int key, int ascii, qboolean down) {
+void Key_Event (int key, int ascii, qbool down) {
 }
 void Key_Init (void) {
 }
@@ -30,11 +30,11 @@ const char *Key_GetBind (int key, int bindmap) {
 void Key_GetBindMap(int *fg, int *bg) {
 }
 
-qboolean Key_SetBindMap(int fg, int bg) {
+qbool Key_SetBindMap(int fg, int bg) {
     return false;
 }
 
-qboolean Key_SetBinding (int keynum, int bindmap, const char *binding) {
+qbool Key_SetBinding (int keynum, int bindmap, const char *binding) {
     return false;
 }
 
@@ -87,16 +87,16 @@ so the server doesn't disconnect.
 ==================
 */
 
-void CL_KeepaliveMessage (qboolean readmessages)
+void CL_KeepaliveMessage (qbool readmessages)
 {
     static double lastdirtytime = 0;
-    static qboolean recursive = false;
+    static qbool recursive = false;
     double dirtytime;
     double deltatime;
     static double countdownmsg = 0;
     static double countdownupdate = 0;
 
-    qboolean thisrecursive;
+    qbool thisrecursive;
 
     thisrecursive = recursive;
     recursive = true;
@@ -195,7 +195,7 @@ void CL_Particles_Init (void) {
 void R_Particles_Init (void) {
 }
 
-void CL_ParticleTrail(int effectnameindex, float pcount, const vec3_t originmins, const vec3_t originmaxs, const vec3_t velocitymins, const vec3_t velocitymaxs, entity_t *ent, int palettecolor, qboolean spawndlight, qboolean spawnparticles, float tintmins[4], float tintmaxs[4], float fade) {
+void CL_ParticleTrail(int effectnameindex, float pcount, const vec3_t originmins, const vec3_t originmaxs, const vec3_t velocitymins, const vec3_t velocitymaxs, entity_t *ent, int palettecolor, qbool spawndlight, qbool spawnparticles, float tintmins[4], float tintmaxs[4], float fade) {
 }
 
 void CL_EntityParticles (const entity_t *ent) {
@@ -216,7 +216,7 @@ int R_PicmipForFlags(int flags) {
     return 0;
 }
 
-void R_TextureStats_Print(qboolean printeach, qboolean printpool, qboolean printtotal) {
+void R_TextureStats_Print(qbool printeach, qbool printpool, qbool printtotal) {
 }
 
 void R_FreeTexturePool(rtexturepool_t **rtexturepool) {
@@ -237,14 +237,14 @@ rtexture_t *R_LoadTextureCubeMap(rtexturepool_t *rtexturepool, const char *ident
     return NULL;
 }
 
-rtexture_t *R_LoadTextureShadowMap2D(rtexturepool_t *rtexturepool, const char *identifier, int width, int height, textype_t textype, qboolean filter) {
+rtexture_t *R_LoadTextureShadowMap2D(rtexturepool_t *rtexturepool, const char *identifier, int width, int height, textype_t textype, qbool filter) {
     return NULL;
 }
-int R_SaveTextureDDSFile(rtexture_t *rt, const char *filename, qboolean skipuncompressed, qboolean hasalpha) {
+int R_SaveTextureDDSFile(rtexture_t *rt, const char *filename, qbool skipuncompressed, qbool hasalpha) {
     return -2;
 }
 
-rtexture_t *R_LoadTextureDDSFile(rtexturepool_t *rtexturepool, const char *filename, qboolean srgb, int flags, qboolean *hasalphaflag, float *avgcolor, int miplevel, qboolean optionaltexture) {
+rtexture_t *R_LoadTextureDDSFile(rtexturepool_t *rtexturepool, const char *filename, qbool srgb, int flags, qbool *hasalphaflag, float *avgcolor, int miplevel, qbool optionaltexture) {
     return NULL;
 }
 
@@ -313,10 +313,10 @@ void R_TimeReport(const char *desc) {
 void SCR_CenterPrint(const char *str) {
 }
 
-void SCR_PopLoadingScreen (qboolean redraw) {
+void SCR_PopLoadingScreen (qbool redraw) {
 }
 
-void SCR_PushLoadingScreen (qboolean redraw, const char *msg, float len_in_parent) {
+void SCR_PushLoadingScreen (qbool redraw, const char *msg, float len_in_parent) {
 }
 
 void CL_UpdateScreen(void) {
@@ -331,18 +331,18 @@ void CL_Screen_Shutdown(void) {
 void CL_Screen_NewMap(void) {
 }
 
-void R_ClearScreen(qboolean fogcolor) {
+void R_ClearScreen(qbool fogcolor) {
 }
 
-qboolean R_Stereo_Active(void) {
+qbool R_Stereo_Active(void) {
     return false;
 }
 
-qboolean R_Stereo_ColorMasking(void) {
+qbool R_Stereo_ColorMasking(void) {
     return false;
 }
 
-void SCR_ClearLoadingScreen (qboolean redraw) {
+void SCR_ClearLoadingScreen (qbool redraw) {
 }
 
 void Sbar_Init (void) {
@@ -370,7 +370,7 @@ cvar_t chase_active = {CVAR_SAVE, "chase_active", "0", "enables chase cam"};
 // IMPORTANT
 cvar_t cl_viewmodel_scale = {0, "cl_viewmodel_scale", "1", "changes size of gun model, lower values prevent poking into walls but cause strange artifacts on lighting and especially r_stereo/vid_stereobuffer options where the size of the gun becomes visible"};
 
-trace_t CL_TraceLine(const vec3_t start, const vec3_t end, int type, prvm_edict_t *passedict, int hitsupercontentsmask, int skipsupercontentsmask, float extend, qboolean hitnetworkbrushmodels, qboolean hitnetworkplayers, int *hitnetworkentity, qboolean hitcsqcentities, qboolean hitsurfaces) {
+trace_t CL_TraceLine(const vec3_t start, const vec3_t end, int type, prvm_edict_t *passedict, int hitsupercontentsmask, int skipsupercontentsmask, float extend, qbool hitnetworkbrushmodels, qbool hitnetworkplayers, int *hitnetworkentity, qbool hitcsqcentities, qbool hitsurfaces) {
     trace_t trace;
     memset (&trace, 0 , sizeof(trace_t));
     return trace;
@@ -390,8 +390,8 @@ dp_model_t *CL_GetModelFromEdict(prvm_edict_t *ed) {
 // new remove: gl_backend, gl_rmain r_shadows, vid_shared
 r_refdef_t r_refdef;
 viddef_t vid;
-qboolean vid_activewindow = true;
-qboolean vid_hidden = true;
+qbool vid_activewindow = true;
+qbool vid_hidden = true;
 rtexture_t *r_texture_notexture;
 rtexture_t *r_texture_blanknormalmap;
 float in_mouse_x, in_mouse_y;
@@ -409,11 +409,11 @@ void Render_Init(void) {
 void R_Mesh_DestroyMeshBuffer(r_meshbuffer_t *buffer) {
 }
 
-r_meshbuffer_t *R_Mesh_CreateMeshBuffer(const void *data, size_t size, const char *name, qboolean isindexbuffer, qboolean isuniformbuffer, qboolean isdynamic, qboolean isindex16) {
+r_meshbuffer_t *R_Mesh_CreateMeshBuffer(const void *data, size_t size, const char *name, qbool isindexbuffer, qbool isuniformbuffer, qbool isdynamic, qbool isindex16) {
     return NULL;
 }
 
-skinframe_t *R_SkinFrame_LoadExternal(const char *name, int textureflags, qboolean complain) {
+skinframe_t *R_SkinFrame_LoadExternal(const char *name, int textureflags, qbool complain) {
     return NULL;
 }
 
@@ -431,7 +431,7 @@ void R_SkinFrame_MarkUsed(skinframe_t *skinframe) {
 int R_Shadow_GetRTLightInfo(unsigned int lightindex, float *origin, float *radius, float *color) {
     return 0;
 }
-skinframe_t *R_SkinFrame_LoadInternalBGRA(const char *name, int textureflags, const unsigned char *skindata, int width, int height, qboolean sRGB) {
+skinframe_t *R_SkinFrame_LoadInternalBGRA(const char *name, int textureflags, const unsigned char *skindata, int width, int height, qbool sRGB) {
     return NULL;
 }
 void FOG_clear(void) {
@@ -443,7 +443,7 @@ void R_DecalSystem_Reset(decalsystem_t *decalsystem) {
 void R_RTLight_Update(rtlight_t *rtlight, int isstatic, matrix4x4_t *matrix, vec3_t color, int style, const char *cubemapname, int shadow, vec_t corona, vec_t coronasizescale, vec_t ambientscale, vec_t diffusescale, vec_t specularscale, int flags) {
 }
 
-void GL_Mesh_ListVBOs(qboolean printeach) {
+void GL_Mesh_ListVBOs(qbool printeach) {
 }
 
 cvar_t vid_sRGB = {CVAR_SAVE, "vid_sRGB", "0", "if hardware is capable, modify rendering to be gamma corrected for the sRGB color standard (computer monitors, TVs), recommended"};
@@ -485,7 +485,7 @@ void CL_EstablishConnection(const char *host, int firstarg) {
 void CL_Init (void) {
 }
 
-void CL_SetInfo(const char *key, const char *value, qboolean send, qboolean allowstarkey, qboolean allowmodel, qboolean quiet)
+void CL_SetInfo(const char *key, const char *value, qbool send, qbool allowstarkey, qbool allowmodel, qbool quiet)
 {
 }
 

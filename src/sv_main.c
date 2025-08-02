@@ -673,7 +673,7 @@ Larger attenuations will drop off.  (max 4 attenuation)
 
 ==================
 */
-void SV_StartSound (prvm_edict_t *entity, int channel, const char *sample, int nvolume, float attenuation, qboolean reliable, float speed)
+void SV_StartSound (prvm_edict_t *entity, int channel, const char *sample, int nvolume, float attenuation, qbool reliable, float speed)
 {
     prvm_prog_t *prog = SVVM_prog;
     sizebuf_t *dest;
@@ -1111,7 +1111,7 @@ crosses a waterline.
 =============================================================================
 */
 
-static qboolean SV_PrepareEntityForSending (prvm_edict_t *ent, entity_state_t *cs, int enumber)
+static qbool SV_PrepareEntityForSending (prvm_edict_t *ent, entity_state_t *cs, int enumber)
 {
     prvm_prog_t *prog = SVVM_prog;
     int i;
@@ -1420,7 +1420,7 @@ static void SV_PrepareEntitiesForSending(void)
 
 #define MAX_LINEOFSIGHTTRACES 64
 
-qboolean SV_CanSeeBox(int numtraces, vec_t eyejitter, vec_t enlarge, vec3_t eye, vec3_t entboxmins, vec3_t entboxmaxs)
+qbool SV_CanSeeBox(int numtraces, vec_t eyejitter, vec_t enlarge, vec3_t eye, vec3_t entboxmins, vec3_t entboxmaxs)
 {
     prvm_prog_t *prog = SVVM_prog;
     float pitchsign;
@@ -1767,11 +1767,11 @@ void SV_AddCameraEyes(void)
 static void SV_WriteEntitiesToClient(client_t *client, prvm_edict_t *clent, sizebuf_t *msg, int maxsize)
 {
     prvm_prog_t *prog = SVVM_prog;
-    qboolean need_empty = false;
+    qbool need_empty = false;
     int i, numsendstates, numcsqcsendstates;
     entity_state_t *s;
     prvm_edict_t *camera;
-    qboolean success;
+    qbool success;
     vec3_t eye;
 
     // if there isn't enough space to accomplish anything, skip it
@@ -2518,7 +2518,7 @@ static void Download_CheckExtensions(void)
 static void SV_Download_f(void)
 {
     const char *whichpack, *whichpack2, *extension;
-    qboolean is_csqc; // so we need to check only once
+    qbool is_csqc; // so we need to check only once
 
     if (Cmd_Argc() < 2)
     {
@@ -3442,7 +3442,7 @@ static void SVVM_count_edicts(prvm_prog_t *prog)
     Con_Printf("step      :%3i\n", step);
 }
 
-static qboolean SVVM_load_edict(prvm_prog_t *prog, prvm_edict_t *ent)
+static qbool SVVM_load_edict(prvm_prog_t *prog, prvm_edict_t *ent)
 {
     // remove things from different skill levels or deathmatch
     if (deathmatch.integer)
@@ -3647,7 +3647,7 @@ extern cvar_t host_framerate;
 static int SV_ThreadFunc(void *voiddata)
 {
     prvm_prog_t *prog = SVVM_prog;
-    qboolean playing = false;
+    qbool playing = false;
     double sv_timer = 0;
     double sv_deltarealtime, sv_oldrealtime, sv_realtime;
     double wait;

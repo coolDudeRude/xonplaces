@@ -263,7 +263,7 @@ void Cvar_CompleteCvarPrint (const char *partial)
 }
 
 // check if a cvar is held by some progs
-static qboolean Cvar_IsAutoCvar(cvar_t *var)
+static qbool Cvar_IsAutoCvar(cvar_t *var)
 {
     int i;
     prvm_prog_t *prog;
@@ -337,7 +337,7 @@ Cvar_Set
 extern cvar_t sv_disablenotify;
 static void Cvar_SetQuick_Internal (cvar_t *var, const char *value)
 {
-    qboolean changed;
+    qbool changed;
     size_t valuelen;
     char vabuf[1024];
 
@@ -670,7 +670,7 @@ Cvar_Command
 Handles variable inspection and changing from the console
 ============
 */
-qboolean    Cvar_Command (void)
+qbool    Cvar_Command (void)
 {
     cvar_t            *v;
 
@@ -889,7 +889,7 @@ void Cvar_List_f (void)
     const char *partial;
     size_t len;
     int count;
-    qboolean ispattern;
+    qbool ispattern;
 
     if (Cmd_Argc() > 1)
     {
@@ -1038,7 +1038,7 @@ void Cvar_FillAll_f()
     char *buf, *p, *q;
     int n, i;
     cvar_t *var;
-    qboolean verify;
+    qbool verify;
     if(Cmd_Argc() != 2)
     {
         Con_Printf("Usage: %s length to plant rubbish\n", Cmd_Argv(0));

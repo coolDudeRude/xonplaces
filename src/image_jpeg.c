@@ -39,7 +39,7 @@ typedef int jboolean;
 #include <jpeglib.h>
 
 static jmp_buf error_in_jpeg;
-static qboolean jpeg_toolarge;
+static qbool jpeg_toolarge;
 
 // Our own output manager for JPEG compression
 typedef struct
@@ -270,7 +270,7 @@ static CompressedImageCacheItem *CompressedImageCache_Find(const char *imagename
     return NULL;
 }
 
-qboolean Image_Compress(const char *imagename, size_t maxsize, void **buf, size_t *size)
+qbool Image_Compress(const char *imagename, size_t maxsize, void **buf, size_t *size)
 {
     unsigned char *imagedata, *newimagedata;
     int maxPixelCount;

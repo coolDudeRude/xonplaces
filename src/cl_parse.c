@@ -217,17 +217,17 @@ so the server doesn't disconnect.
 */
 
 static unsigned char olddata[NET_MAXMESSAGE];
-void CL_KeepaliveMessage (qboolean readmessages)
+void CL_KeepaliveMessage (qbool readmessages)
 {
     static double lastdirtytime = 0;
-    static qboolean recursive = false;
+    static qbool recursive = false;
     double dirtytime;
     double deltatime;
     static double countdownmsg = 0;
     static double countdownupdate = 0;
     sizebuf_t old;
 
-    qboolean thisrecursive;
+    qbool thisrecursive;
 
     thisrecursive = recursive;
     recursive = true;
@@ -292,7 +292,7 @@ void CL_KeepaliveMessage (qboolean readmessages)
 
 void CL_ParseEntityLump(char *entdata)
 {
-    qboolean loadedsky = false;
+    qbool loadedsky = false;
     const char *data;
     char key[128], value[MAX_INPUTLINE];
     FOG_clear(); // LordHavoc: no fog until set
@@ -468,7 +468,7 @@ static void CL_UpdateItemsAndWeapon(void)
 #define LOADPROGRESSWEIGHT_WORLDMODEL      30.0
 #define LOADPROGRESSWEIGHT_WORLDMODEL_INIT  2.0
 
-static void CL_BeginDownloads(qboolean aborteddownload)
+static void CL_BeginDownloads(qbool aborteddownload)
 {
     char vabuf[1024];
 
@@ -2066,13 +2066,13 @@ typedef struct cl_iplog_item_s
 }
 cl_iplog_item_t;
 
-static qboolean cl_iplog_loaded = false;
+static qbool cl_iplog_loaded = false;
 static int cl_iplog_numitems = 0;
 static int cl_iplog_maxitems = 0;
 static cl_iplog_item_t *cl_iplog_items;
 
 static void CL_IPLog_Load(void);
-static void CL_IPLog_Add(const char *address, const char *name, qboolean checkexisting, qboolean addtofile)
+static void CL_IPLog_Add(const char *address, const char *name, qbool checkexisting, qbool addtofile)
 {
     int i;
     size_t sz_name, sz_address;
@@ -2220,7 +2220,7 @@ static void CL_IPLog_List_f(void)
 }
 
 // look for anything interesting like player IP addresses or ping reports
-static qboolean CL_ExaminePrintString(const char *text)
+static qbool CL_ExaminePrintString(const char *text)
 {
     int len;
     const char *t;
@@ -2252,7 +2252,7 @@ static qboolean CL_ExaminePrintString(const char *text)
     if (cl.parsingtextmode == CL_PARSETEXTMODE_PING)
     {
         // if anything goes wrong, we'll assume this is not a ping report
-        qboolean expected = cl.parsingtextexpectingpingforscores != 0;
+        qbool expected = cl.parsingtextexpectingpingforscores != 0;
         cl.parsingtextexpectingpingforscores = 0;
         cl.parsingtextmode = CL_PARSETEXTMODE_NONE;
         t = text;
@@ -2476,7 +2476,7 @@ void CL_ParseServerMessage(void)
     unsigned char        cmdlog[32];
     const char        *cmdlogname[32], *temp;
     int            cmdindex, cmdcount = 0;
-    qboolean    strip_pqc;
+    qbool    strip_pqc;
 
     // LordHavoc: moved demo message writing from before the packet parse to
     // after the packet parse so that CL_Stop_f can be called by cl_autodemo

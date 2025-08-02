@@ -25,7 +25,7 @@
 #define SND_OGG_H
 
 
-qboolean OGG_LoadVorbisFile (const char *filename, sfx_t *sfx);
+qbool OGG_LoadVorbisFile (const char *filename, sfx_t *sfx);
 
 
 #endif

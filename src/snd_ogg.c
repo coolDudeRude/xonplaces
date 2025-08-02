@@ -301,7 +301,7 @@ OGG_LoadVorbisFile
 Load an Ogg Vorbis file into memory
 ====================
 */
-qboolean OGG_LoadVorbisFile(const char *filename, sfx_t *sfx)
+qbool OGG_LoadVorbisFile(const char *filename, sfx_t *sfx)
 {
     unsigned char *data;
     fs_offset_t filesize;

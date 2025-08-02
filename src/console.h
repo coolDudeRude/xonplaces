@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 extern int con_totallines;
 extern int con_backscroll;
-extern qboolean con_initialized;
+extern qbool con_initialized;
 
 void Con_Rcon_Redirect_Init(lhnetsocket_t *sock, lhnetaddress_t *dest);
 void Con_Rcon_Redirect_End(void);
@@ -65,7 +65,7 @@ void Con_ToggleConsole_f (void);
 
 int Nicks_CompleteChatLine(char *buffer, size_t size, unsigned int pos);
 
-qboolean GetMapList (const char *s, char *completedname, int completednamebufferlength);
+qbool GetMapList (const char *s, char *completedname, int completednamebufferlength);
 
 /// wrapper function to attempt to either complete the command line
 /// or to list possible matches grouped by type
@@ -111,7 +111,7 @@ con_lineinfo_t;
 
 typedef struct conbuffer_s
 {
-    qboolean active;
+    qbool active;
     int textsize;
     char *text;
     int maxlines;

@@ -43,9 +43,9 @@ cvar_t rcon_address = {0, "rcon_address", "", "server address to send rcon comma
 cvar_t team = {CVAR_USERINFO | CVAR_SAVE, "team", "none", "QW team (4 character limit, example: blue)"};
 cvar_t skin = {CVAR_USERINFO | CVAR_SAVE, "skin", "", "QW player skin name (example: base)"};
 cvar_t noaim = {CVAR_USERINFO | CVAR_SAVE, "noaim", "1", "QW option to disable vertical autoaim"};
-qboolean allowcheats = false;
+qbool allowcheats = false;
 
-extern qboolean host_shuttingdown;
+extern qbool host_shuttingdown;
 extern cvar_t developer_entityparsing;
 
 /*
@@ -230,7 +230,7 @@ static void Host_Notarget_f (void)
         SV_ClientPrint("notarget ON\n");
 }
 
-qboolean noclip_anglehack;
+qbool noclip_anglehack;
 
 static void Host_Noclip_f (void)
 {
@@ -528,7 +528,7 @@ void Host_Savegame_to(prvm_prog_t *prog, const char *name)
     int        i, k, l, numbuffers, lightstyles = 64;
     char    comment[SAVEGAME_COMMENT_LENGTH+1];
     char    line[MAX_INPUTLINE];
-    qboolean isserver;
+    qbool isserver;
     char    *s;
 
     // first we have to figure out if this can be saved in 64 lightstyles
@@ -676,7 +676,7 @@ static void Host_Savegame_f (void)
 {
     prvm_prog_t *prog = SVVM_prog;
     char    name[MAX_QPATH];
-    qboolean deadflag = false;
+    qbool deadflag = false;
 
     if (!sv.active)
     {
@@ -1083,7 +1083,7 @@ static void Host_Name_f (void)
 {
     prvm_prog_t *prog = SVVM_prog;
     int i, j;
-    qboolean valid_colors;
+    qbool valid_colors;
     const char *newNameSource;
     char newName[sizeof(host_client->name)];
 
@@ -1332,7 +1332,7 @@ static void Host_Version_f (void)
     Con_Printf("Version: %s build %s\n", gamename, buildstring);
 }
 
-static void Host_Say(qboolean teamonly)
+static void Host_Say(qbool teamonly)
 {
     prvm_prog_t *prog = SVVM_prog;
     client_t *save;
@@ -1341,7 +1341,7 @@ static void Host_Say(qboolean teamonly)
     char *p2;
     // LordHavoc: long say messages
     char text[1024];
-    qboolean fromServer = false;
+    qbool fromServer = false;
 
     if (cmd_source == src_command)
     {
@@ -1422,7 +1422,7 @@ static void Host_Tell_f(void)
     int j;
     const char *p1, *p2;
     char text[MAX_INPUTLINE]; // LordHavoc: FIXME: temporary buffer overflow fix (was 64)
-    qboolean fromServer = false;
+    qbool fromServer = false;
 
     if (cmd_source == src_command)
     {
@@ -1990,7 +1990,7 @@ static void Host_Kick_f (void)
     const char *message = NULL;
     client_t *save;
     int i;
-    qboolean byNumber = false;
+    qbool byNumber = false;
 
     if (!sv.active)
         return;

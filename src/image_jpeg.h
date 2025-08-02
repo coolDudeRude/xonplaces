@@ -28,7 +28,7 @@
 /*! \returns 0 if failed, or the size actually used.
  */
 size_t JPEG_SaveImage_to_Buffer (char *jpegbuf, size_t jpegsize, int width, int height, unsigned char *data);
-qboolean Image_Compress(const char *imagename, size_t maxsize, void **buf, size_t *size);
+qbool Image_Compress(const char *imagename, size_t maxsize, void **buf, size_t *size);
 
 
 #endif

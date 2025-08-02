@@ -220,7 +220,7 @@ int main (int argc, char *argv[])
     return 0;
 }
 
-qboolean sys_supportsdlgetticks = true;
+qbool sys_supportsdlgetticks = true;
 unsigned int Sys_SDL_GetTicks (void)
 {
     return SDL_GetTicks();

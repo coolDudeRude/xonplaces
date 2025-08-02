@@ -36,7 +36,7 @@ static unsigned char* Load_STB_Image_BGRA(const char* filename, const char* type
 
 #if 1
 // written by LordHavoc in a readable way, optimized by Vic, further optimized by LordHavoc (the non-special index case), readable version preserved below this
-void Image_CopyMux(unsigned char *outpixels, const unsigned char *inpixels, int inputwidth, int inputheight, qboolean inputflipx, qboolean inputflipy, qboolean inputflipdiagonal, int numoutputcomponents, int numinputcomponents, int *outputinputcomponentindices)
+void Image_CopyMux(unsigned char *outpixels, const unsigned char *inpixels, int inputwidth, int inputheight, qbool inputflipx, qbool inputflipy, qbool inputflipdiagonal, int numoutputcomponents, int numinputcomponents, int *outputinputcomponentindices)
 {
     int index, c, x, y;
     const unsigned char *in, *line;
@@ -85,7 +85,7 @@ void Image_CopyMux(unsigned char *outpixels, const unsigned char *inpixels, int 
 }
 #else
 // intentionally readable version
-void Image_CopyMux(unsigned char *outpixels, const unsigned char *inpixels, int inputwidth, int inputheight, qboolean inputflipx, qboolean inputflipy, qboolean inputflipdiagonal, int numoutputcomponents, int numinputcomponents, int *outputinputcomponentindices)
+void Image_CopyMux(unsigned char *outpixels, const unsigned char *inpixels, int inputwidth, int inputheight, qbool inputflipx, qbool inputflipy, qbool inputflipdiagonal, int numoutputcomponents, int numinputcomponents, int *outputinputcomponentindices)
 {
     int index, c, x, y;
     const unsigned char *in, *inrow, *incolumn;
@@ -265,7 +265,7 @@ imageformat_t imageformats_other[] =
 };
 
 
-unsigned char *loadimagepixelsbgra (const char *filename, qboolean complain, qboolean allowFixtrans, qboolean convertsRGB, int *miplevel)
+unsigned char *loadimagepixelsbgra (const char *filename, qbool complain, qbool allowFixtrans, qbool convertsRGB, int *miplevel)
 {
     imageformat_t *firstformat, *format;
     unsigned char *data = NULL, *data2 = NULL;
@@ -356,7 +356,7 @@ unsigned char *loadimagepixelsbgra (const char *filename, qboolean complain, qbo
 }
 
 extern cvar_t gl_picmip;
-rtexture_t *loadtextureimage (rtexturepool_t *pool, const char *filename, qboolean complain, int flags, qboolean allowFixtrans, qboolean sRGB)
+rtexture_t *loadtextureimage (rtexturepool_t *pool, const char *filename, qbool complain, int flags, qbool allowFixtrans, qbool sRGB)
 {
     unsigned char *data;
     rtexture_t *rt;
@@ -368,9 +368,9 @@ rtexture_t *loadtextureimage (rtexturepool_t *pool, const char *filename, qboole
     return rt;
 }
 
-qboolean Image_WriteTGABGR_preflipped (const char *filename, int width, int height, const unsigned char *data)
+qbool Image_WriteTGABGR_preflipped (const char *filename, int width, int height, const unsigned char *data)
 {
-    qboolean ret;
+    qbool ret;
     unsigned char buffer[18];
     const void *buffers[2];
     fs_offset_t sizes[2];
@@ -392,12 +392,12 @@ qboolean Image_WriteTGABGR_preflipped (const char *filename, int width, int heig
     return ret;
 }
 
-qboolean Image_WriteTGABGRA (const char *filename, int width, int height, const unsigned char *data)
+qbool Image_WriteTGABGRA (const char *filename, int width, int height, const unsigned char *data)
 {
     int y;
     unsigned char *buffer, *out;
     const unsigned char *in, *end;
-    qboolean ret;
+    qbool ret;
 
     buffer = (unsigned char *)Mem_Alloc(tempmempool, width*height*4 + 18);
 

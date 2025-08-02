@@ -6,9 +6,9 @@
 #undef false
 
 #ifndef __cplusplus
-typedef enum qboolean_e {false, true} qboolean;
+typedef enum qbool_e {false, true} qbool;
 #else
-typedef bool qboolean;
+typedef bool qbool;
 #endif
 
 #ifndef NULL

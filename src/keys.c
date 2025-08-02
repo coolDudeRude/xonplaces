@@ -32,7 +32,7 @@ key up events are sent even if in console mode
 
 char        key_line[MAX_INPUTLINE];
 int            key_linepos;
-qboolean    key_insert = true;    // insert key toggle (for editing)
+qbool    key_insert = true;    // insert key toggle (for editing)
 keydest_t    key_dest;
 int            key_consoleactive;
 char        *keybindings[MAX_BINDMAPS][MAX_KEYS];
@@ -40,7 +40,7 @@ char        *keybindings[MAX_BINDMAPS][MAX_KEYS];
 int            history_line;
 char        history_savedline[MAX_INPUTLINE];
 char        history_searchstring[MAX_INPUTLINE];
-qboolean    history_matchfound = false;
+qbool    history_matchfound = false;
 conbuffer_t history;
 
 extern cvar_t    con_textsize;
@@ -122,7 +122,7 @@ static void Key_History_Push(void)
         history_matchfound = false;
 }
 
-static qboolean Key_History_Get_foundCommand(void)
+static qbool Key_History_Get_foundCommand(void)
 {
     if (!history_matchfound)
         return false;
@@ -1312,7 +1312,7 @@ Key_KeynumToString (int keynum, char *tinystr, size_t tinystrlength)
 }
 
 
-qboolean
+qbool
 Key_SetBinding (int keynum, int bindmap, const char *binding)
 {
     char *newbinding;
@@ -1347,7 +1347,7 @@ void Key_GetBindMap(int *fg, int *bg)
         *bg = key_bmap2;
 }
 
-qboolean Key_SetBindMap(int fg, int bg)
+qbool Key_SetBindMap(int fg, int bg)
 {
     if(fg >= MAX_BINDMAPS)
         return false;
@@ -1703,14 +1703,14 @@ typedef struct eventqueueitem_s
 {
     int key;
     int ascii;
-    qboolean down;
+    qbool down;
 }
 eventqueueitem_t;
 static int events_blocked = 0;
 static eventqueueitem_t eventqueue[32];
 static unsigned eventqueue_idx = 0;
 
-static void Key_EventQueue_Add(int key, int ascii, qboolean down)
+static void Key_EventQueue_Add(int key, int ascii, qbool down)
 {
     if(eventqueue_idx < sizeof(eventqueue) / sizeof(*eventqueue))
     {
@@ -1738,10 +1738,10 @@ void Key_EventQueue_Unblock(void)
 }
 
 void
-Key_Event (int key, int ascii, qboolean down)
+Key_Event (int key, int ascii, qbool down)
 {
     const char *bind;
-    qboolean q;
+    qbool q;
     keydest_t keydest = key_dest;
     char vabuf[1024];
 

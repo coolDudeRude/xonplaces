@@ -622,13 +622,13 @@ static void Mod_BuildBaseBonePoses(void)
     Mem_Free(basebonepose);
 }
 
-static qboolean Mod_Alias_CalculateBoundingBox(void)
+static qbool Mod_Alias_CalculateBoundingBox(void)
 {
     int vnum;
-    qboolean firstvertex = true;
+    qbool firstvertex = true;
     float dist, yawradius, radius;
     float *v;
-    qboolean isanimated = false;
+    qbool isanimated = false;
     VectorClear(loadmodel->normalmins);
     VectorClear(loadmodel->normalmaxs);
     yawradius = 0;
